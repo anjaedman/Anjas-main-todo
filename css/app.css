@@ -1,23 +1,42 @@
-h1,
+
+@import url('https://fonts.googleapis.com/css2?family=Merienda:wght@500&display=swap');
+
+
+
+
+h1 {
+ font-family: 'Merienda', cursive;
+  text-align: center;
+  font-size: 50px;
+
+}
 h2,
 h3,
 h4,
 h5,
 h6,
 p {
+  font-family: 'Merienda', cursive;
   font-size: 100%;
   padding: 0;
   margin: 0;
 }
 
 :root {
-  --theme-background-color: #2d2d2d;
+  --theme-background-color:rgb(63, 109, 46);
+  /* --theme-background-color: #2d2d2d; */
   --theme-text-color: #f5f5f5;
   --theme-header-color: #2a2a2a;
-  --theme-primary-color: #4b4b4b;
+  --theme-subheader-color: #383838;
+  --theme-primary-color: #383838;
   --theme-primary-highlight-color: #606060;
   --theme-action-color: #2e2e2e;
-  --theme-dangerous-action-color: #d34e4e;
+  --theme-dangerous-action-color: #af3f3f;
+  --theme-input-base-color: #3e3e3e;
+  --theme-input-submit-color: #a9cec2;
+  --theme-card-level-1-color: rgba(144, 246, 106, 0.5);
+  --theme-card-level-2-color: rgba(255, 121, 188, 0.5);
+  --theme-card-level-3-color: rgba(87, 210, 255, 0.565);
   --base-border-radius: 0.5rem;
 }
 
@@ -37,18 +56,41 @@ body {
   align-items: center;
 }
 
+input {
+  background-color: var(--theme-input-base-color);
+  border: none;
+  color: var(--theme-text-color);
+  padding: 0.5rem 1rem;
+  border-radius: var(--base-border-radius);
+}
+
+input[type="submit"] {
+  background-color: var(--theme-action-color);
+  color: var(--theme-text-color);
+  transition: all 1s;
+}
+
+input[type="submit"]:hover {
+  cursor: pointer;
+  color: black;
+  background-color: var(--theme-input-submit-color);
+}
+
+
 .fav-icon {
-  height: 32px;
-  width: 32px;
+  border-radius: 120px;
+  height: 150px;
+  width: 150px;
 }
 
 #todo-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   padding: 1rem 2rem;
+  
   /* background-color: #1a1a1a; */
+ 
 }
 
 
@@ -59,7 +101,11 @@ body {
   background-color: var(--theme-primary-color);
   border-radius: var(--base-border-radius);
   padding: 1rem;
+  row-gap: 1rem;
   transition: background-color 0, 5s ease;
+  position: relative;
+
+  
 }
 
 .todo-item:hover {
@@ -71,24 +117,88 @@ body {
 }
 
 .todo-item p {
-  font-size: 1.2em;
+  font-size: 1em;
+  margin-bottom: 2rem;
+}
+
+.todo-item span {
+  position: absolute;
+  top: 1.4rem;
+  right: 1.4rem;
+  font-size: 0.8em;
+
+
 }
 
 .todo-item .btn-remove-todo {
-
-  background-color: var(--theme-action-color);
+  background: none;
   border: none;
-  border-radius: 0.2rem;
+  color: var(--theme-text-color);
   transition: all 1s;
   padding: 0.5rem 1rem;
+  align-self: flex-end;
+
 }
 
+
+.todo-item .btn-remove-todo img {
+  width: 22px;
+  height: 22px;
+  color: white;
+}
 
 .todo-item .btn-remove-todo:hover {
-  background-color: var(--theme-dangerous-action-color);
+
   cursor: pointer;
-  
+  transform: scale(1.5);
+  filter: invert(100%);
+
+  /* background-color: var(--theme-dangerous-action-color); */
+
+
+}
+
+.form-todo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
+  background-color: var(--theme-subheader-color);
+  border-radius: var(--base-border-radius);
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.form-todo span {
+  display: flex;
+  gap: 1rem;
+}
+
+.card-color-1 {
+  background-color: var(--theme-card-level-1-color);
+
+}
+
+.card-color-2 {
+  background-color: var(--theme-card-level-2-color);
+}
+
+.card-color-3 {
+  background-color: var(--theme-card-level-3-color);
 }
 
 
-.todo-item
+
+
+/* 
+@media only screen and (max-width: 880px) {
+  .todo__date {
+    display: none;
+  }
+} */
+
+
+.todo-checked {
+  background-color: var(--theme-input-base-color);
+}
+
