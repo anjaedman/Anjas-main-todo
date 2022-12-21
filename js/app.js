@@ -2,7 +2,7 @@ console.log("script app.js connected");
 
 //Ett "Top level" objekt, ett globalt "App"-objekt
 const baseUrl = "https://api.jsonbin.io/v3/b/"
-const ourTodoUrl = baseUrl + "6396ec752d0e0021081aa488"
+const ourTodoUrl = baseUrl + "6396ec752d0e0021081aa488" ///fyll i din bin.id
 const masterKey = "$2b$10$bvAQKClK8f6yd5wv.F4OheYPjb/ysVo4K0auyit7YcfCjmI.Y6NA6"
 
 console.log("BaseUrl:", baseUrl)
@@ -51,11 +51,15 @@ const App = {
             })
 
     },
-    // uppdatera den här: cteate: function( => skicka upp vårtnyligen skapade item)
+    // uppdatera den här: create: function( => skicka upp vårtnyligen skapade item)
     create: function () { // våran function för att skapa en todo
         const inputTitle = document.querySelector("input[name='todo-title']")
         const inputText = document.querySelector("input[name='todo-text']")
         const inputColor = document.querySelector("input[name='todo-color']")
+
+
+
+
         //skickar värdena till funktion addTodoItem
         //värderna kommer från våra inputs, hämtas via element, value
         // addTodoItem(inputTitle.value, inputText.value)
@@ -133,8 +137,6 @@ const App = {
         resetForm()
         this.listOfTodos.forEach((item) => {
 
-            // function addTodoItem(title, text) {
-            // const targeElemnt = document.getElementById("todo-container")
 
             const newTodoItem = document.createElement("div")
             const newTodoTitle = document.createElement("h2")
@@ -144,11 +146,23 @@ const App = {
             const newBtnCheck = document.createElement("button")
             const newBtnRemoveIcon = document.createElement("img")
 
+            const buttonContainer = document.createElement("section")
+            const newBtnCheckIcon = document.createElement("img")
+
+            // const newBtnRemoveId = item.id
+            // console.log(newBtnRemoveId)
+
             newTodoTitle.innerText = item.title
+
+            // newTodoDate.innerText = `${item.id}`
             newTodoDate.innerText = new Date(item.id).toLocaleDateString()
+
             newTodoText.innerText = item.text
-            newBtnRemoveIcon.src = "../assets/ic_trash.svg"
+            newBtnRemoveIcon.src = "../assets/recycle.png"
             newBtnCheck.innerText = item.checked ? "Done" : "Mark Done"
+
+            newBtnCheckIcon.src = "../assets/check.png"
+            newBtnCheck.appendChild(newBtnCheckIcon)
 
             newBtnRemove.appendChild(newBtnRemoveIcon)
 
@@ -160,8 +174,9 @@ const App = {
             newBtnRemove.classList.add("btn-remove-todo")
             item.checked ? newTodoItem.classList.add("todo-checked") : null
 
-            //Till mediquerius
-            // newTodoDate.classList.add("todo__date")
+            // Till mediquerius
+            newTodoDate.classList.add("todo__date")
+
 
             newBtnRemove.addEventListener("click", function () {
                 console.log('onClick  = Remove todo item')
@@ -172,7 +187,18 @@ const App = {
                 App.update(item.id)
             })
 
-            newTodoItem.append(newTodoTitle, newTodoDate, newTodoText, newBtnRemove, newBtnCheck)
+
+            buttonContainer.append(newBtnCheck, newBtnRemove)
+
+            newTodoItem.append(
+                newTodoTitle,
+                newTodoDate,
+                newTodoText,
+                // newBtnCheck, 
+                // newBtnRemove,
+
+                buttonContainer
+            )
 
             this.elements.container.appendChild(newTodoItem)
 
@@ -186,7 +212,7 @@ const App = {
 function createTodoItem(suppliedTitle, suppliedText, suppliedColor, suppliedId) {
 
     //slumpvis siffra mellan 1-3 
-    const ranColIndex = Math.floor(Math.random() * 3 + 1)
+    // const ranColIndex = Math.floor(Math.random() * 3 + 1)
 
     // elvis-operator ?: värde/vilkor ? true : false
     return {
