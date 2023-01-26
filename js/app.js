@@ -101,7 +101,7 @@ const App = {
     },
     remove: function (id) { // våran function för att ta bort vår todo
 
-        let findItemIndex = this.listOfTodos.findIndex(item => item - id === id)
+        let findItemIndex = this.listOfTodos.findIndex(item => item.id === id)
         //ta bort det indItemIndex vi ittar från vår array
         this.listOfTodos.splice(findItemIndex, 1);
 
@@ -128,7 +128,6 @@ const App = {
             .catch(function (err) {
                 console.log("Error: " + err)
             })
-
 
     },
     render: function () {
@@ -166,7 +165,7 @@ const App = {
 
             newBtnRemove.appendChild(newBtnRemoveIcon)
 
-
+          
             const determineCardColor = `card-color-${item.colorIndex}`
             //class = "todo-item card-color-randomNummer(1-3)"
 
@@ -194,19 +193,17 @@ const App = {
                 newTodoTitle,
                 newTodoDate,
                 newTodoText,
-                // newBtnCheck, 
-                // newBtnRemove,
 
                 buttonContainer
+                // newBtnCheck, 
+                // newBtnRemove
+
             )
 
             this.elements.container.appendChild(newTodoItem)
 
-
         })
-
     }
-
 }
 
 function createTodoItem(suppliedTitle, suppliedText, suppliedColor, suppliedId) {
@@ -221,24 +218,20 @@ function createTodoItem(suppliedTitle, suppliedText, suppliedColor, suppliedId) 
         text: suppliedText,
         colorIndex: suppliedColor,
         checked: false
-
     }
 }
-
 
 //denn funktion körs av input= "submit", skickar iväg form
 function onFormSubmit() {
     App.create()
-
 }
 
 function resetForm() {
     document.querySelector("input[name='todo-title']").value = ""
     document.querySelector("input[name='todo-text']").value = ""
-
 }
 
-App.addInitialTodos()
+// App.addInitialTodos()
 App.fetchTodos()
 App.render()
 
@@ -246,5 +239,3 @@ function logApp() {
     console.log(App)
     console.table(App.listOfTodos)
 }
-
-
